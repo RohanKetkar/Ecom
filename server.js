@@ -1,0 +1,25 @@
+const express = require("express")
+const web = express()
+require("dotenv").config()
+const morgan = require("morgan")
+const router = require("./routes/authroute")
+const categoryroutes = require("./routes/categoryroute")
+const productroute=require("./routes/productroute")
+const cors = require("cors")
+const slugify=require("slugify")
+const PORT = process.env.PORT || 8080
+web.use(morgan('dev'))
+//runing rontend and backend on different ports to avoid origin issue adding cors
+web.use(cors())
+web.use(express.json())
+const connectwithdatabase = require("./config/database")
+connectwithdatabase()
+web.use("/api/v1", router)
+web.use("/api/v1/category",categoryroutes)
+web.use("/api/v1/product/",productroute)
+web.get("/", (req, res) => {
+    res.send("<h1>Home</h1>")
+})
+web.listen(PORT, () => {
+    console.log("working at http://localhost:" + PORT)
+})

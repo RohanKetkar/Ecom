@@ -20,7 +20,7 @@ import Createitem from "./com/Admin/Createitem";
 import Users from "./com/Admin/Users";
 // import { Authprovider } from '../src/com/context/auth'
 import Products from "./com/Admin/Product";
-
+import Updateproduct from "./com/Admin/Updateproduct";
 function App() {
   return (
     <>
@@ -51,6 +51,7 @@ function App() {
               element={<Admindasboard title={"Admin-Dashboard - Rockify"} />}
             />
             <Route path="/dashboard/admin/products" element={<Products />} />
+            <Route path="admin/products/:slug" element={<Updateproduct />} />
             <Route
               path="/dashboard/admin/create-category"
               element={

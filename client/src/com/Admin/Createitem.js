@@ -49,6 +49,7 @@ const Createitem = ({ title }) => {
       if (data?.success) {
         toast.error(data?.message);
         // console.log(productData);
+        getallproducts();
       } else {
         // console.log(productData);
         toast.success("Product Created Successfully");
@@ -57,6 +58,18 @@ const Createitem = ({ title }) => {
     } catch (error) {
       console.log(error);
       toast.error("something went wrong");
+    }
+  };
+  const getallproducts = async () => {
+    let { data } = await axios.get("/api/v1/product/getallproduct");
+    try {
+      if (data.sucess) {
+        toast.success("great");
+      } else {
+        toast.error("check");
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
   useEffect(() => {

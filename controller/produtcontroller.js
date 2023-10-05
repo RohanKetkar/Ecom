@@ -45,6 +45,7 @@ exports.getallproduct = async (req, res) => {
     let product = await productmodel
       .find({})
       .populate("category")
+      .select("-photo")
       .limit(12)
       .sort({ createdAt: -1 });
     res.status(200).send({
@@ -92,9 +93,9 @@ exports.getpaginated = async (req, res) => {
 };
 exports.getsingleproduct = async (req, res) => {
   try {
-    let { name } = req.params;
+    let { slug } = req.params;
     let product = await productmodel
-      .findOne({ name: slugify(name) })
+      .findOne({ slug})
       .populate("category");
 
     res.status(200).send({

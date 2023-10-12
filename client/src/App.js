@@ -21,6 +21,8 @@ import Users from "./com/Admin/Users";
 // import { Authprovider } from '../src/com/context/auth'
 import Products from "./com/Admin/Product";
 import Updateproduct from "./com/Admin/Updateproduct";
+import Productsuser from "./com/Productsuser";
+import Productsmore from "./com/Productsmore";
 function App() {
   return (
     <>
@@ -42,6 +44,8 @@ function App() {
             path="/Category"
             // element={<Category title={"Category - Rockify"} />}
           />
+          <Route path="/products" element={<Productsuser />} />
+          <Route path="/products/:slug" element={<Productsmore />} />
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route path="user" element={<Dashboard />} />
           </Route>

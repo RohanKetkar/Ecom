@@ -8,6 +8,7 @@ const {
   productphoto,
   deleteproduct,
   updateproduct,
+  productFiltersController,
 } = require("../controller/produtcontroller");
 
 const formidable = require("express-formidable");
@@ -33,5 +34,6 @@ router.put(
   formidable(),
   updateproduct
 );
+router.post("/filter", productFiltersController);
 
 module.exports = router;

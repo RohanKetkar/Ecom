@@ -105,6 +105,7 @@ const Createitem = ({ title }) => {
               type="file"
               name="photo"
               accept="image/*"
+              width="90px"
               onChange={(e) => setPhoto(e.target.files[0])}
               hidden
             />

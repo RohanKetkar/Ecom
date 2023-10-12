@@ -107,7 +107,7 @@ const Updateproduct = () => {
         <div className="col-md-3">
           <Adminmenu />
         </div>
-        <div className="col-md-9">
+        <div className="bg-blue-700">
           <h1>Update Product</h1>
           <div className="m-1 w-75">
             <Select
@@ -154,7 +154,7 @@ const Updateproduct = () => {
                   <img
                     src={`/api/v1/product/productphoto/${id}`}
                     alt="product_photo"
-                    height={"200px"}
+                    height={"130px"}
                     className="img img-responsive"
                   />
                 </div>

@@ -94,13 +94,12 @@ exports.getpaginated = async (req, res) => {
 exports.getsingleproduct = async (req, res) => {
   try {
     let { slug } = req.params;
-    let product = await productmodel
-      .findOne({ slug})
-      .populate("category");
+    let product = await productmodel.findOne({ slug }).populate("category");
 
     res.status(200).send({
       message: "success",
       product,
+      success: true,
     });
   } catch (e) {
     console.log(e);
@@ -180,6 +179,28 @@ exports.updateproduct = async (req, res) => {
     console.log(e);
     res.status(200).send({
       message: "check",
+    });
+  }
+};
+
+exports.productFiltersController = async (req, res) => {
+  try {
+    const { checke, radior } = req.body;
+    let args = {};
+    if (checke.length > 0) args.category = checke;
+    if (radior.length) args.price = { $gte: radior[0], $lte: radior[1] };
+    const product = await productmodel.find(args);
+    res.status(200).send({
+      success: true,
+      product,
+      args,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error WHile Filtering Products",
+      error,
     });
   }
 };
